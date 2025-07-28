@@ -13,7 +13,7 @@ connectDB();
 // Middlewares
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:5173',"https://restaurant.com"]
+    origin: ['http://localhost:5173',"https://phyroze-restaurant.com"]
 }))
 app.use(express.json()); // parse incoming request in json format
 app.use(cookieParser())
