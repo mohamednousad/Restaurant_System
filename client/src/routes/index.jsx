@@ -1,6 +1,14 @@
-import { Home, Auth, Orders, Tables, Menu, Dashboard } from "../pages";
+import {
+  Home,
+  Auth,
+  Orders,
+  Tables,
+  Menu,
+  Dashboard,
+  CustomerOrder,
+} from "../views";
 import { Layout } from "./Layout";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedRoute, CustomerRoute } from "./ProtectedRoute";
 
 export const routes = [
   {
@@ -45,6 +53,30 @@ export const routes = [
       <ProtectedRoute>
         <Dashboard />
       </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/customer",
+    element: (
+      <CustomerRoute>
+        <CustomerOrder />
+      </CustomerRoute>
+    ),
+  },
+  {
+    path: "/customer/tables",
+    element: (
+      <CustomerRoute>
+        <Tables />
+      </CustomerRoute>
+    ),
+  },
+  {
+    path: "/customer/menu",
+    element: (
+      <CustomerRoute>
+        <Menu />
+      </CustomerRoute>
     ),
   },
 ];
