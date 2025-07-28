@@ -189,64 +189,61 @@ const Bill = () => {
     },
   });
 
-  return (
-    <>
-      <div className="flex items-center justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">
-          Items({cartData.lenght})
-        </p>
-        <h1 className="text-[#f5f5f5] text-md font-bold">
-          ₹{total.toFixed(2)}
-        </h1>
-      </div>
-      <div className="flex items-center justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">Tax(5.25%)</p>
-        <h1 className="text-[#f5f5f5] text-md font-bold">₹{tax.toFixed(2)}</h1>
-      </div>
-      <div className="flex items-center justify-between px-5 mt-2">
-        <p className="text-xs text-[#ababab] font-medium mt-2">
-          Total With Tax
-        </p>
-        <h1 className="text-[#f5f5f5] text-md font-bold">
-          ₹{totalPriceWithTax.toFixed(2)}
-        </h1>
-      </div>
-      <div className="flex items-center gap-3 px-5 mt-4">
-        <button
-          onClick={() => setPaymentMethod("Cash")}
-          className={`bg-[#1f1f1f] px-4 py-3 w-full rounded-lg text-[#ababab] font-semibold ${
-            paymentMethod === "Cash" ? "bg-[#383737]" : ""
-          }`}
-        >
-          Cash
-        </button>
-        <button
-          onClick={() => setPaymentMethod("Online")}
-          className={`bg-[#1f1f1f] px-4 py-3 w-full rounded-lg text-[#ababab] font-semibold ${
-            paymentMethod === "Online" ? "bg-[#383737]" : ""
-          }`}
-        >
-          Online
-        </button>
-      </div>
+ return (
+  <div className="space-y-3">
+    <div className="flex justify-between">
+      <p className="text-sm text-gray-600">Items({cartData.length})</p>
+      <p className="text-gray-800 font-medium">₹{total.toFixed(2)}</p>
+    </div>
+    <div className="flex justify-between">
+      <p className="text-sm text-gray-600">Tax(5.25%)</p>
+      <p className="text-gray-800 font-medium">₹{tax.toFixed(2)}</p>
+    </div>
+    <div className="flex justify-between border-t border-gray-200 pt-2">
+      <p className="text-sm text-gray-600 font-medium">Total With Tax</p>
+      <p className="text-gray-800 font-bold">₹{totalPriceWithTax.toFixed(2)}</p>
+    </div>
 
-      <div className="flex items-center gap-3 px-5 mt-4">
-        <button className="bg-[#025cca] px-4 py-3 w-full rounded-lg text-[#f5f5f5] font-semibold text-lg">
-          Print Receipt
-        </button>
-        <button
-          onClick={handlePlaceOrder}
-          className="bg-[#f6b100] px-4 py-3 w-full rounded-lg text-[#1f1f1f] font-semibold text-lg"
-        >
-          Place Order
-        </button>
-      </div>
+    <div className="grid grid-cols-2 gap-3 pt-3">
+      <button
+        onClick={() => setPaymentMethod("Cash")}
+        className={`p-2 rounded-lg font-medium ${
+          paymentMethod === "Cash" 
+            ? "bg-blue-100 text-blue-600 border border-blue-200" 
+            : "bg-gray-100 text-gray-600"
+        }`}
+      >
+        Cash
+      </button>
+      <button
+        onClick={() => setPaymentMethod("Online")}
+        className={`p-2 rounded-lg font-medium ${
+          paymentMethod === "Online" 
+            ? "bg-blue-100 text-blue-600 border border-blue-200" 
+            : "bg-gray-100 text-gray-600"
+        }`}
+      >
+        Online
+      </button>
+    </div>
 
-      {showInvoice && (
-        <Invoice orderInfo={orderInfo} setShowInvoice={setShowInvoice} />
-      )}
-    </>
-  );
+    <div className="grid grid-cols-2 gap-3 pt-3">
+      <button className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg font-medium">
+        Print Receipt
+      </button>
+      <button
+        onClick={handlePlaceOrder}
+        className="bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg font-medium"
+      >
+        Place Order
+      </button>
+    </div>
+
+    {showInvoice && (
+      <Invoice orderInfo={orderInfo} setShowInvoice={setShowInvoice} />
+    )}
+  </div>
+);
 };
 
 export default Bill;

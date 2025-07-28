@@ -1,3 +1,4 @@
+// RecentOrders.jsx
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import OrderList from "./OrderList";
@@ -19,36 +20,29 @@ const RecentOrders = () => {
   }
 
   return (
-    <div className="px-8 mt-6">
-      <div className="bg-[#1a1a1a] w-full h-[450px] rounded-lg">
-        <div className="flex justify-between items-center px-6 py-4">
-          <h1 className="text-[#f5f5f5] text-lg font-semibold tracking-wide">
-            Recent Orders
-          </h1>
-          <a href="" className="text-[#025cca] text-sm font-semibold">
-            View all
-          </a>
-        </div>
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+      <div className="flex justify-between items-center p-4 border-b">
+        <h1 className="text-lg font-semibold text-gray-800">Recent Orders</h1>
+        <button className="text-blue-500 text-sm font-medium">View all</button>
+      </div>
 
-        <div className="flex items-center gap-4 bg-[#1f1f1f] rounded-[15px] px-6 py-4 mx-6">
-          <FaSearch className="text-[#f5f5f5]" />
-          <input
-            type="text"
-            placeholder="Search recent orders"
-            className="bg-[#1f1f1f] outline-none text-[#f5f5f5]"
-          />
-        </div>
+      <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-3 mx-4 my-3">
+        <FaSearch className="text-gray-500" />
+        <input
+          type="text"
+          placeholder="Search recent orders"
+          className="bg-transparent outline-none text-gray-700 w-full"
+        />
+      </div>
 
-        {/* Order list */}
-        <div className="mt-4 px-6 overflow-y-scroll h-[300px] scrollbar-hide">
-          {resData?.data.data.length > 0 ? (
-            resData.data.data.map((order) => {
-              return <OrderList key={order._id} order={order} />;
-            })
-          ) : (
-            <p className="col-span-3 text-gray-500">No orders available</p>
-          )}
-        </div>
+      <div className="max-h-[400px] overflow-y-auto px-4 pb-4">
+        {resData?.data.data.length > 0 ? (
+          resData.data.data.map((order) => (
+            <OrderList key={order._id} order={order} />
+          ))
+        ) : (
+          <p className="text-center text-gray-500 py-4">No orders available</p>
+        )}
       </div>
     </div>
   );

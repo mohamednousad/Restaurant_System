@@ -1,59 +1,65 @@
-import React from "react";
 import { FaCheckDouble, FaLongArrowAltRight } from "react-icons/fa";
 import { FaCircle } from "react-icons/fa";
 import { formatDateAndTime, getAvatarName } from "../../utils/index";
 
 const OrderCard = ({ key, order }) => {
-  console.log(order);
-  return (
-    <div key={key} className="w-[500px] bg-[#262626] p-4 rounded-lg mb-4">
-      <div className="flex items-center gap-5">
-        <button className="bg-[#f6b100] p-3 text-xl font-bold rounded-lg">
-          {getAvatarName(order.customerDetails.name)}
-        </button>
-        <div className="flex items-center justify-between w-[100%]">
-          <div className="flex flex-col items-start gap-1">
-            <h1 className="text-[#f5f5f5] text-lg font-semibold tracking-wide">
-              {order.customerDetails.name}
-            </h1>
-            <p className="text-[#ababab] text-sm">#{Math.floor(new Date(order.orderDate).getTime())} / Dine in</p>
-            <p className="text-[#ababab] text-sm">Table <FaLongArrowAltRight className="text-[#ababab] ml-2 inline" /> {order.table.tableNo}</p>
-          </div>
-          <div className="flex flex-col items-end gap-2">
-            {order.orderStatus === "Ready" ? (
-              <>
-                <p className="text-green-600 bg-[#2e4a40] px-2 py-1 rounded-lg">
-                  <FaCheckDouble className="inline mr-2" /> {order.orderStatus}
-                </p>
-                <p className="text-[#ababab] text-sm">
-                  <FaCircle className="inline mr-2 text-green-600" /> Ready to
-                  serve
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-yellow-600 bg-[#4a452e] px-2 py-1 rounded-lg">
-                  <FaCircle className="inline mr-2" /> {order.orderStatus}
-                </p>
-                <p className="text-[#ababab] text-sm">
-                  <FaCircle className="inline mr-2 text-yellow-600" /> Preparing your order
-                </p>
-              </>
-            )}
-          </div>
+ return (
+  <div key={key} className="w-full bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-4">
+    <div className="flex items-start gap-4">
+      <div className="bg-yellow-500 text-white p-3 rounded-lg font-bold text-lg">
+        {getAvatarName(order.customerDetails.name)}
+      </div>
+      
+      <div className="flex-1 flex justify-between">
+        <div className="space-y-1">
+          <h1 className="text-gray-800 font-medium">
+            {order.customerDetails.name}
+          </h1>
+          <p className="text-gray-500 text-sm">
+            #{Math.floor(new Date(order.orderDate).getTime())} • Dine in
+          </p>
+          <p className="text-gray-500 text-sm flex items-center">
+            Table <FaLongArrowAltRight className="mx-1" /> {order.table.tableNo}
+          </p>
+        </div>
+
+        <div className="text-right space-y-2">
+          {order.orderStatus === "Ready" ? (
+            <>
+              <span className="inline-flex items-center bg-green-100 text-green-700 px-2 py-1 rounded-md text-sm">
+                <FaCheckDouble className="mr-1" /> Ready
+              </span>
+              <p className="text-gray-500 text-sm flex items-center justify-end">
+                <FaCircle className="text-green-500 mr-1 text-xs" /> Ready to serve
+              </p>
+            </>
+          ) : (
+            <>
+              <span className="inline-flex items-center bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md text-sm">
+                <FaCircle className="mr-1 text-xs" /> {order.orderStatus}
+              </span>
+              <p className="text-gray-500 text-sm flex items-center justify-end">
+                <FaCircle className="text-yellow-500 mr-1 text-xs" /> Preparing
+              </p>
+            </>
+          )}
         </div>
       </div>
-      <div className="flex justify-between items-center mt-4 text-[#ababab]">
-        <p>{formatDateAndTime(order.orderDate)}</p>
-        <p>{order.items.length} Items</p>
-      </div>
-      <hr className="w-full mt-4 border-t-1 border-gray-500" />
-      <div className="flex items-center justify-between mt-4">
-        <h1 className="text-[#f5f5f5] text-lg font-semibold">Total</h1>
-        <p className="text-[#f5f5f5] text-lg font-semibold">₹{order.bills.totalWithTax.toFixed(2)}</p>
-      </div>
     </div>
-  );
+
+    <div className="flex justify-between text-gray-500 text-sm mt-4">
+      <p>{formatDateAndTime(order.orderDate)}</p>
+      <p>{order.items.length} Items</p>
+    </div>
+
+    <hr className="border-gray-200 my-3" />
+
+    <div className="flex justify-between items-center">
+      <h1 className="text-gray-800 font-medium">Total</h1>
+      <p className="text-gray-800 font-bold">₹{order.bills.totalWithTax.toFixed(2)}</p>
+    </div>
+  </div>
+);
 };
 
 export default OrderCard;

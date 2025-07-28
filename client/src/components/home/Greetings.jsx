@@ -15,27 +15,25 @@ const Greetings = () => {
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
     ];
-    return `${months[date.getMonth()]} ${String(date.getDate()).padStart(2, '0')}, ${date.getFullYear()}`;
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   };
 
   const formatTime = (date) =>
-    `${String(date.getHours()).padStart(2, "0")}:${String(
-      date.getMinutes()
-    ).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`;
+    `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 
   return (
-    <div className="flex justify-between items-center px-8 mt-5">
+    <div className="bg-white p-4 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center">
       <div>
-        <h1 className="text-[#f5f5f5] text-2xl font-semibold tracking-wide">
-          Good Morning, {userData.name || "TEST USER"}
+        <h1 className="text-lg font-semibold text-gray-800">
+          Good Morning, {userData.name || "User"}
         </h1>
-        <p className="text-[#ababab] text-sm">
+        <p className="text-sm text-gray-600 mt-1">
           Give your best services for customers 😀
         </p>
       </div>
-      <div>
-        <h1 className="text-[#f5f5f5] text-3xl font-bold tracking-wide w-[130px]">{formatTime(dateTime)}</h1>
-        <p className="text-[#ababab] text-sm">{formatDate(dateTime)}</p>
+      <div className="mt-2 sm:mt-0 text-right">
+        <h1 className="text-xl font-bold text-gray-800">{formatTime(dateTime)}</h1>
+        <p className="text-sm text-gray-600">{formatDate(dateTime)}</p>
       </div>
     </div>
   );

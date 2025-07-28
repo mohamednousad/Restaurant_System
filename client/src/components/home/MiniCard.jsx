@@ -1,19 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-const MiniCard = ({title, icon, number, footerNum}) => {
+const MiniCard = ({ title, icon, number, footerNum }) => {
+  const isEarnings = title === "Total Earnings";
+  const badgeStyle = isEarnings
+    ? "bg-green-100 text-green-600"
+    : "bg-yellow-100 text-yellow-600";
+
   return (
-    <div className='bg-[#1a1a1a] py-5 px-5 rounded-lg w-[50%]'>
-        <div className='flex items-start justify-between'>
-            <h1 className='text-[#f5f5f5] text-lg font-semibold tracking-wide'>{title}</h1>
-            <button className={`${title === "Total Earnings" ? "bg-[#02ca3a]" : "bg-[#f6b100]"} p-3 rounded-lg text-[#f5f5f5] text-2xl`}>{icon}</button>
+    <div className="bg-white p-4 rounded-xl shadow-sm flex-1 min-w-[180px]">
+      <div className="flex justify-between items-center">
+        <h1 className="text-sm font-medium text-gray-700">{title}</h1>
+        <div className={`${badgeStyle} p-2 rounded-lg text-lg`}>
+          {icon}
         </div>
-        <div>
-            <h1 className='text-[#f5f5f5] text-4xl font-bold mt-5'>{
-              title === "Total Earnings" ? `₹${number}` : number}</h1>
-            <h1 className='text-[#f5f5f5] text-lg mt-2'><span className='text-[#02ca3a]'>{footerNum}%</span> than yesterday</h1>
-        </div>
+      </div>
+      <div className="mt-3">
+        <h1 className="text-xl font-bold text-gray-800">
+          {isEarnings ? `₹${number}` : number}
+        </h1>
+        <p className="text-xs text-gray-500 mt-1">
+          <span className="text-green-500">{footerNum}%</span> than yesterday
+        </p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default MiniCard
+export default MiniCard;

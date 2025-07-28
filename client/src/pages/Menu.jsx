@@ -9,56 +9,55 @@ import Bill from "../components/menu/Bill";
 import { useSelector } from "react-redux";
 
 const Menu = () => {
-
-    useEffect(() => {
-      document.title = "POS | Menu"
-    }, [])
+  useEffect(() => {
+    document.title = "POS | Menu";
+  }, []);
 
   const customerData = useSelector((state) => state.customer);
 
-  return (
-    <section className="bg-[#1f1f1f] h-[calc(100vh-5rem)] overflow-hidden flex gap-3">
-      {/* Left Div */}
-      <div className="flex-[3]">
-        <div className="flex items-center justify-between px-10 py-4">
-          <div className="flex items-center gap-4">
-            <BackButton />
-            <h1 className="text-[#f5f5f5] text-2xl font-bold tracking-wider">
-              Menu
+  // Layout 1
+return (
+  <section className="bg-white min-h-[calc(100vh-5rem)] flex flex-col lg:flex-row">
+    <div className="lg:w-[70%] w-full overflow-hidden">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 sm:px-4 border-b sticky top-0 bg-white z-10">
+        <div className="flex items-center gap-3 mb-2 sm:mb-0">
+          <BackButton />
+          <h1 className="text-gray-800 text-xl sm:text-2xl font-bold">Menu</h1>
+        </div>
+        <div className="flex items-center gap-3 bg-gray-100 p-2 rounded-lg">
+          <MdRestaurantMenu className="text-gray-700 text-2xl" />
+          <div>
+            <h1 className="text-sm text-gray-800 font-medium">
+              {customerData.customerName || "Customer Name"}
             </h1>
-          </div>
-          <div className="flex items-center justify-around gap-4">
-            <div className="flex items-center gap-3 cursor-pointer">
-              <MdRestaurantMenu className="text-[#f5f5f5] text-4xl" />
-              <div className="flex flex-col items-start">
-                <h1 className="text-md text-[#f5f5f5] font-semibold tracking-wide">
-                  {customerData.customerName || "Customer Name"}
-                </h1>
-                <p className="text-xs text-[#ababab] font-medium">
-                  Table : {customerData.table?.tableNo || "N/A"}
-                </p>
-              </div>
-            </div>
+            <p className="text-xs text-gray-500">
+              Table: {customerData.table?.tableNo || "N/A"}
+            </p>
           </div>
         </div>
+      </div>
 
+      <div className="p-4 overflow-y-auto h-[calc(100vh-12rem)]">
         <MenuContainer />
       </div>
-      {/* Right Div */}
-      <div className="flex-[1] bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg pt-2">
-        {/* Customer Info */}
-        <CustomerInfo />
-        <hr className="border-[#2a2a2a] border-t-2" />
-        {/* Cart Items */}
-        <CartInfo />
-        <hr className="border-[#2a2a2a] border-t-2" />
-        {/* Bills */}
-        <Bill />
-      </div>
+    </div>
 
-      <BottomNav />
-    </section>
-  );
+    <div className="lg:w-[30%] w-full border-l border-gray-200 bg-white fixed lg:static bottom-0 left-0 right-0 z-20 shadow-xl lg:shadow-none">
+      <div className="h-[50vh] lg:h-[calc(100vh-5rem)] flex flex-col">
+        <div className="p-4 overflow-y-auto flex-1">
+          <CustomerInfo />
+          <hr className="border-gray-200 my-3" />
+          <CartInfo />
+          <hr className="border-gray-200 my-3" />
+          <Bill />
+        </div>
+      </div>
+    </div>
+
+    <BottomNav />
+  </section>
+);
+
 };
 
 export default Menu;

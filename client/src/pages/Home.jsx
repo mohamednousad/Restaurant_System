@@ -13,24 +13,25 @@ const Home = () => {
       document.title = "POS | Home"
     }, [])
 
-  return (
-    <section className="bg-[#1f1f1f]  h-[calc(100vh-5rem)] overflow-hidden flex gap-3">
-      {/* Left Div */}
-      <div className="flex-[3]">
-        <Greetings />
-        <div className="flex items-center w-full gap-3 px-8 mt-8">
+return (
+  <section className="bg-[#f5f5f5] min-h-[calc(100vh-5rem)] overflow-hidden flex flex-col lg:flex-row gap-4 px-8 py-6">
+    <div className="flex-[3] overflow-auto">
+      <Greetings />
+          <div className="flex-[4]">
+        <div className="flex items-center w-full gap-3 py-5 mt-1">
           <MiniCard title="Total Earnings" icon={<BsCashCoin />} number={512} footerNum={1.6} />
           <MiniCard title="In Progress" icon={<GrInProgress />} number={16} footerNum={3.6} />
         </div>
         <RecentOrders />
       </div>
-      {/* Right Div */}
-      <div className="flex-[2]">
-        <PopularDishes />
-      </div>
-      <BottomNav />
-    </section>
-  );
+    </div>
+    <div className="flex-[1] overflow-auto">
+      <PopularDishes />
+    </div>
+    <BottomNav />
+  </section>
+);
+
 };
 
 export default Home;

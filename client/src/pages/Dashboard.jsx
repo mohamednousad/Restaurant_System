@@ -26,52 +26,46 @@ const Dashboard = () => {
     if (action === "table") setIsTableModalOpen(true);
   };
 
-  return (
-    <div className="bg-[#1f1f1f] h-[calc(100vh-5rem)]">
-      <div className="container mx-auto flex items-center justify-between py-14 px-6 md:px-4">
-        <div className="flex items-center gap-3">
-          {buttons.map(({ label, icon, action }) => {
-            return (
-              <button
-                onClick={() => handleOpenModal(action)}
-                className="bg-[#1a1a1a] hover:bg-[#262626] px-8 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2"
-              >
-                {label} {icon}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="flex items-center gap-3">
-          {tabs.map((tab) => {
-            return (
-              <button
-                className={`
-                px-8 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2 ${
-                  activeTab === tab
-                    ? "bg-[#262626]"
-                    : "bg-[#1a1a1a] hover:bg-[#262626]"
-                }`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab}
-              </button>
-            );
-          })}
-        </div>
+ // Layout 3
+return (
+  <div className="bg-[#1f1f1f] min-h-[calc(100vh-5rem)] overflow-hidden">
+    <div className="container mx-auto flex flex-wrap md:flex-nowrap items-center justify-between py-10 px-4 md:px-6 gap-4">
+      <div className="flex flex-wrap gap-3">
+        {buttons.map(({ label, icon, action }) => (
+          <button
+            onClick={() => handleOpenModal(action)}
+            className="bg-[#1a1a1a] hover:bg-[#262626] px-6 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2"
+          >
+            {label} {icon}
+          </button>
+        ))}
       </div>
-
-      {activeTab === "Metrics" && <Metrics />}
-      {activeTab === "Orders" && <RecentOrders />}
-      {activeTab === "Payments" && 
-        <div className="text-white p-6 container mx-auto">
-          Payment Component Coming Soon
-        </div>
-      }
-
-      {isTableModalOpen && <Modal setIsTableModalOpen={setIsTableModalOpen} />}
+      <div className="flex flex-wrap gap-3">
+        {tabs.map((tab) => (
+          <button
+            className={`px-6 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2 ${
+              activeTab === tab ? "bg-[#262626]" : "bg-[#1a1a1a] hover:bg-[#262626]"
+            }`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
     </div>
-  );
+
+    {activeTab === "Metrics" && <Metrics />}
+    {/* {activeTab === "Orders" && <RecentOrders />} */}
+    {activeTab === "Payments" && (
+      <div className="text-white p-6 container mx-auto">
+        Payment Component Coming Soon
+      </div>
+    )}
+
+    {isTableModalOpen && <Modal setIsTableModalOpen={setIsTableModalOpen} />}
+  </div>
+);
+
 };
 
 export default Dashboard;
