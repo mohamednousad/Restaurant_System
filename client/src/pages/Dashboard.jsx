@@ -26,41 +26,49 @@ const Dashboard = () => {
     if (action === "table") setIsTableModalOpen(true);
   };
 
- // Layout 3
 return (
-  <div className="bg-[#1f1f1f] min-h-[calc(100vh-5rem)] overflow-hidden">
-    <div className="container mx-auto flex flex-wrap md:flex-nowrap items-center justify-between py-10 px-4 md:px-6 gap-4">
-      <div className="flex flex-wrap gap-3">
-        {buttons.map(({ label, icon, action }) => (
-          <button
-            onClick={() => handleOpenModal(action)}
-            className="bg-[#1a1a1a] hover:bg-[#262626] px-6 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2"
-          >
-            {label} {icon}
-          </button>
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-3">
-        {tabs.map((tab) => (
-          <button
-            className={`px-6 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2 ${
-              activeTab === tab ? "bg-[#262626]" : "bg-[#1a1a1a] hover:bg-[#262626]"
-            }`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-    </div>
+  <div className="bg-white min-h-[calc(100vh-5rem)] mt-2">
+    <div className="container mx-auto p-4">
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <div className="flex flex-wrap gap-2">
+          {buttons.map(({ label, icon, action }, index) => (
+            <button
+              key={index}
+              onClick={() => handleOpenModal(action)}
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200"
+            >
+              {icon} {label}
+            </button>
+          ))}
+        </div>
 
-    {activeTab === "Metrics" && <Metrics />}
-    {/* {activeTab === "Orders" && <RecentOrders />} */}
-    {activeTab === "Payments" && (
-      <div className="text-white p-6 container mx-auto">
-        Payment Component Coming Soon
+        {/* Tab Navigation */}
+        <div className="flex flex-wrap gap-2">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              className={`px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors ${
+                activeTab === tab
+                  ? "bg-yellow-500 text-white"
+                  : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+              }`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
       </div>
-    )}
+
+        {activeTab === "Metrics" && <Metrics />}
+        {activeTab === "Orders" && <RecentOrders />}
+        {activeTab === "Payments" && (
+          <div className="text-gray-800 p-4">
+            Payment Component Coming Soon
+          </div>
+        )}
+    </div>
 
     {isTableModalOpen && <Modal setIsTableModalOpen={setIsTableModalOpen} />}
   </div>

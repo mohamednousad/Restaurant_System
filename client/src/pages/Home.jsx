@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import BottomNav from "../components/shared/BottomNav";
 import Greetings from "../components/home/Greetings";
 import { BsCashCoin } from "react-icons/bs";

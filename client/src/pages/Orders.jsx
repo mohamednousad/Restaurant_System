@@ -28,7 +28,7 @@ const Orders = () => {
 
  return (
   <section className="bg-white min-h-[calc(100vh-5rem)]">
-    <div className="sticky top-0 z-10 bg-white p-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div className="sticky top-0 z-10 bg-white p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
       <div className="flex items-center gap-3">
         <BackButton />
         <h1 className="text-xl font-bold text-gray-800">Orders</h1>

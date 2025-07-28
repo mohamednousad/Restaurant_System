@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalPrice } from "../../redux/slices/cartSlice";
 import {
@@ -29,6 +30,7 @@ function loadScript(src) {
 
 const Bill = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const customerData = useSelector((state) => state.customer);
   const cartData = useSelector((state) => state.cart);
@@ -145,6 +147,7 @@ const Bill = () => {
         paymentMethod: paymentMethod,
       };
       orderMutation.mutate(orderData);
+      navigate("/")
     }
   };
 
@@ -189,61 +192,63 @@ const Bill = () => {
     },
   });
 
- return (
-  <div className="space-y-3">
-    <div className="flex justify-between">
-      <p className="text-sm text-gray-600">Items({cartData.length})</p>
-      <p className="text-gray-800 font-medium">₹{total.toFixed(2)}</p>
-    </div>
-    <div className="flex justify-between">
-      <p className="text-sm text-gray-600">Tax(5.25%)</p>
-      <p className="text-gray-800 font-medium">₹{tax.toFixed(2)}</p>
-    </div>
-    <div className="flex justify-between border-t border-gray-200 pt-2">
-      <p className="text-sm text-gray-600 font-medium">Total With Tax</p>
-      <p className="text-gray-800 font-bold">₹{totalPriceWithTax.toFixed(2)}</p>
-    </div>
+  return (
+    <div className="space-y-3">
+      <div className="flex justify-between">
+        <p className="text-sm text-gray-600">Items({cartData.length})</p>
+        <p className="text-gray-800 font-medium">₹{total.toFixed(2)}</p>
+      </div>
+      <div className="flex justify-between">
+        <p className="text-sm text-gray-600">Tax(5.25%)</p>
+        <p className="text-gray-800 font-medium">₹{tax.toFixed(2)}</p>
+      </div>
+      <div className="flex justify-between border-t border-gray-200 pt-2">
+        <p className="text-sm text-gray-600 font-medium">Total With Tax</p>
+        <p className="text-gray-800 font-bold">
+          ₹{totalPriceWithTax.toFixed(2)}
+        </p>
+      </div>
 
-    <div className="grid grid-cols-2 gap-3 pt-3">
-      <button
-        onClick={() => setPaymentMethod("Cash")}
-        className={`p-2 rounded-lg font-medium ${
-          paymentMethod === "Cash" 
-            ? "bg-blue-100 text-blue-600 border border-blue-200" 
-            : "bg-gray-100 text-gray-600"
-        }`}
-      >
-        Cash
-      </button>
-      <button
-        onClick={() => setPaymentMethod("Online")}
-        className={`p-2 rounded-lg font-medium ${
-          paymentMethod === "Online" 
-            ? "bg-blue-100 text-blue-600 border border-blue-200" 
-            : "bg-gray-100 text-gray-600"
-        }`}
-      >
-        Online
-      </button>
-    </div>
+      <div className="grid grid-cols-2 gap-3 pt-3">
+        <button
+          onClick={() => setPaymentMethod("Cash")}
+          className={`px-3 py-2 rounded-lg font-medium transition-all ${
+            paymentMethod === "Cash"
+              ? "border border-yellow-500 text-yellow-600 bg-yellow-50"
+              : "border border-gray-300 text-gray-600 hover:border-gray-400"
+          }`}
+        >
+          Cash
+        </button>
+        <button
+          onClick={() => setPaymentMethod("Online")}
+          className={`px-3 py-2 rounded-lg font-medium transition-all ${
+            paymentMethod === "Online"
+              ? "border border-yellow-500 text-yellow-600 bg-yellow-50"
+              : "border border-gray-300 text-gray-600 hover:border-gray-400"
+          }`}
+        >
+          Online
+        </button>
+      </div>
 
-    <div className="grid grid-cols-2 gap-3 pt-3">
-      <button className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg font-medium">
-        Print Receipt
-      </button>
-      <button
-        onClick={handlePlaceOrder}
-        className="bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg font-medium"
-      >
-        Place Order
-      </button>
-    </div>
+      <div className="grid grid-cols-2 gap-3 pt-3">
+        <button className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg font-medium">
+          Print
+        </button>
+        <button
+          onClick={handlePlaceOrder}
+          className="bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg font-medium"
+        >
+          Place Order
+        </button>
+      </div>
 
-    {showInvoice && (
-      <Invoice orderInfo={orderInfo} setShowInvoice={setShowInvoice} />
-    )}
-  </div>
-);
+      {showInvoice && (
+        <Invoice orderInfo={orderInfo} setShowInvoice={setShowInvoice} />
+      )}
+    </div>
+  );
 };
 
 export default Bill;
