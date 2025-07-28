@@ -30,10 +30,14 @@ const Header = () => {
   {/* LOGO & NAME */}
   <div onClick={() => navigate("/")} className="flex items-center gap-2 cursor-pointer">
     {/* SVG LOGO */}
-    <svg className="h-8 w-8 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 2L2 7l10 5 10-5-10-5zm0 7l10 5v2l-10 5-10-5v-2l10-5z" />
-    </svg>
-    <h1 className="text-lg font-semibold text-gray-800">Restro</h1>
+  <svg className="h-8 w-8 text-orange-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+  <path d="M8 7H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M8 11H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M8 15H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="17" cy="17" r="1" fill="currentColor"/>
+</svg>
+    <h1 className="text-lg font-semibold text-gray-800">RS-MANAGER</h1>
     
   {/* SEARCH */}
   <div className="flex items-center gap-3 bg-gray-100 rounded-lg ms-2 px-4 py-2 w-full sm:w-96">

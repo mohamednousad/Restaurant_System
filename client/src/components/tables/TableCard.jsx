@@ -1,33 +1,58 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getAvatarName, getBgColor } from "../../utils"
+import { getAvatarName, getBgColor } from "../../utils";
 import { useDispatch } from "react-redux";
 import { updateTable } from "../../redux/slices/customerSlice";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-const TableCard = ({id, name, status, initials, seats}) => {
+const TableCard = ({ id, name, status, initials, seats }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = (name) => {
-    if(status === "Booked") return;
+    if (status === "Booked") return;
 
-    const table = { tableId: id, tableNo: name }
-    dispatch(updateTable({table}))
+    const table = { tableId: id, tableNo: name };
+    dispatch(updateTable({ table }));
     navigate(`/menu`);
   };
 
   return (
-    <div onClick={() => handleClick(name)} key={id} className="w-[300px] hover:bg-[#2c2c2c] bg-[#262626] p-4 rounded-lg cursor-pointer">
-      <div className="flex items-center justify-between px-1">
-        <h1 className="text-[#f5f5f5] text-xl font-semibold">Table <FaLongArrowAltRight className="text-[#ababab] ml-2 inline" /> {name}</h1>
-        <p className={`${status === "Booked" ? "text-green-600 bg-[#2e4a40]" : "bg-[#664a04] text-white"} px-2 py-1 rounded-lg`}>
+    <div
+      onClick={() => handleClick(name)}
+      key={id}
+      className="w-full max-w-xs bg-white rounded-lg shadow-sm border border-gray-200 p-4 cursor-pointer transition-all"
+    >
+      <div className="flex justify-between items-center">
+        <h1 className="text-gray-800 font-medium flex items-center">
+          Table <FaLongArrowAltRight className="mx-2 text-gray-400" /> {name}
+        </h1>
+        <span
+          className={`px-2 py-1 rounded-md text-sm font-medium ${
+            status === "Booked"
+              ? "bg-green-100 text-green-700"
+              : "bg-yellow-100 text-yellow-700"
+          }`}
+        >
           {status}
-        </p>
+        </span>
       </div>
-      <div className="flex items-center justify-center mt-5 mb-8">
-        <h1 className={`text-white rounded-full p-5 text-xl`} style={{backgroundColor : initials ? getBgColor() : "#1f1f1f"}} >{getAvatarName(initials) || "N/A"}</h1>
+
+      <div className="flex justify-center my-4">
+        <div className="flex items-center justify-center">
+          <span
+            className={`flex items-center justify-center w-16 h-16 rounded-full text-xl font-medium text-white`}
+            style={{
+              backgroundColor: initials ? getBgColor() : "#e5e7eb",
+              lineHeight: "1",
+            }}
+          >
+            {getAvatarName(initials) || "N/A"}
+          </span>
+        </div>
       </div>
-      <p className="text-[#ababab] text-xs">Seats: <span className="text-[#f5f5f5]">{seats}</span></p>
+
+      <p className="text-gray-500 text-sm">
+        Seats: <span className="text-gray-700 font-medium">{seats}</span>
+      </p>
     </div>
   );
 };
