@@ -8,7 +8,7 @@ import paneerTikka from '../assets/images/paneer-tika.webp';
 import gulabJamun from '../assets/images/gulab-jamun.webp';
 import pooriSabji from '../assets/images/poori-sabji.webp';
 import roganJosh from '../assets/images/rogan-josh.jpg';
-import { color } from 'framer-motion';
+// import { color } from 'framer-motion';
 
 export const popularDishes = [
     {
@@ -16,42 +16,49 @@ export const popularDishes = [
       image: butterChicken,
       name: 'Butter Chicken',
       numberOfOrders: 250,
+      price: 2000
     },
     {
       id: 2,
       image: palakPaneer,
       name: 'Palak Paneer',
       numberOfOrders: 190,
+      price: 2000
     },
     {
       id: 3,
       image: biryani,
       name: 'Hyderabadi Biryani',
       numberOfOrders: 300,
+      price: 2000
     },
     {
       id: 4,
       image: masalaDosa,
       name: 'Masala Dosa',
       numberOfOrders: 220,
+      price: 2000
     },
     {
       id: 5,
       image: choleBhature,
       name: 'Chole Bhature',
       numberOfOrders: 270,
+      price: 2000
     },
     {
       id: 6,
       image: rajmaChawal,
       name: 'Rajma Chawal',
       numberOfOrders: 180,
+      price: 2000
     },
     {
       id: 7,
       image: paneerTikka,
       name: 'Paneer Tikka',
       numberOfOrders: 210,
+      price: 2000
     },
     {
       id: 8,
@@ -64,12 +71,14 @@ export const popularDishes = [
       image: pooriSabji,
       name: 'Poori Sabji',
       numberOfOrders: 140,
+      price: 2000
     },
     {
       id: 10,
       image: roganJosh,
       name: 'Rogan Josh',
       numberOfOrders: 160,
+      price: 2000
     },
   ];
 
@@ -381,17 +390,65 @@ export const menus = [
 ]
 
 export const metricsData = [
-  { title: "Revenue", value: "₹50,846.90", percentage: "12%", color: "#025cca", isIncrease: false },
-  { title: "Outbound Clicks", value: "10,342", percentage: "16%", color: "#02ca3a", isIncrease: true },
-  { title: "Total Customer", value: "19,720", percentage: "10%", color: "#f6b100", isIncrease: true },
-  { title: "Event Count", value: "20,000", percentage: "10%", color: "#be3e3f", isIncrease: false },
+  { 
+    title: "Revenue", 
+    value: "₹50,846.90", 
+    percentage: "12%", 
+    color: "#3b82f6",  // Blue-500
+    isIncrease: false 
+  },
+  { 
+    title: "Outbound Clicks", 
+    value: "10,342", 
+    percentage: "16%", 
+    color: "#10b981",  // Emerald-500
+    isIncrease: true 
+  },
+  { 
+    title: "Total Customer", 
+    value: "19,720", 
+    percentage: "10%", 
+    color: "#f59e0b",  // Amber-500
+    isIncrease: true 
+  },
+  { 
+    title: "Event Count", 
+    value: "20,000", 
+    percentage: "10%", 
+    color: "#ef4444",  // Red-500
+    isIncrease: false 
+  },
 ];
 
 export const itemsData = [
-  { title: "Total Categories", value: "8", percentage: "12%", color: "#5b45b0", isIncrease: false },
-  { title: "Total Dishes", value: "50", percentage: "12%", color: "#285430", isIncrease: true },
-  { title: "Active Orders", value: "12", percentage: "12%", color: "#735f32", isIncrease: true },
-  { title: "Total Tables", value: "10", color: "#7f167f"}
+  { 
+    title: "Total Categories", 
+    value: "8", 
+    percentage: "12%", 
+    color: "#8b5cf6",  // Violet-500
+    isIncrease: false 
+  },
+  { 
+    title: "Total Dishes", 
+    value: "50", 
+    percentage: "12%", 
+    color: "#059669",  // Emerald-600
+    isIncrease: true 
+  },
+  { 
+    title: "Active Orders", 
+    value: "12", 
+    percentage: "12%", 
+    color: "#d97706",  // Amber-600
+    isIncrease: true 
+  },
+  { 
+    title: "Total Tables", 
+    value: "10", 
+    percentage: "8%", 
+    color: "#7c3aed",  // Violet-600
+    isIncrease: true 
+  }
 ];
 
 export const orders = [
