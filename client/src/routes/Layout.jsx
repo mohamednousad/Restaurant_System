@@ -11,13 +11,15 @@ export const Layout = ({ children }) => {
 
   if (isLoading) return <FullScreenLoader />;
 
+  const isPublicRoute = location.pathname.startsWith("/auth");
   const isCustomerRoute = location.pathname.startsWith("/customer");
 
-  return (
-    <>
-      {isCustomerRoute ? <CustomerHeader /> : <Header />}
-      {children}
-      {isCustomerRoute ? null : <BottomNav />}
-    </>
-  );
+return (
+  <>
+    {isCustomerRoute ? <CustomerHeader /> : !isPublicRoute && <Header />}
+    {children}
+    {/* {!isPublicRoute && !isCustomerRoute && <BottomNav />} */}
+  </>
+);
+
 };
