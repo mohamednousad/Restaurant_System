@@ -1,6 +1,5 @@
 import { axiosWrapper } from "./axiosWrapper";
 
-// API Endpoints
 // Auth
 export const login = (data) => axiosWrapper.post("/api/user/login", data);
 export const register = (data) => axiosWrapper.post("/api/user/register", data);

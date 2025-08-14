@@ -1,6 +1,6 @@
 const express = require("express");
-const config = require("./config/config");
-const connectDB = require("./config/database");
+const config = require("./configs/config");
+const connectDB = require("./configs/database");
 const deviceMiddleware = require("./middlewares/deviceMiddleware");
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 const cookieParser = require("cookie-parser");
@@ -47,6 +47,7 @@ app.use("/api/user", require("./routes/userRoute"));
 app.use("/api/order", require("./routes/orderRoute"));
 app.use("/api/table", require("./routes/tableRoute"));
 app.use("/api/payment", require("./routes/paymentRoute"));
+app.use("/api/notifications", require("./routes/notifications"));
 
 app.use(globalErrorHandler);
 
