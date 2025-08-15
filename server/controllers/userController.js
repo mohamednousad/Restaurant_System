@@ -2,7 +2,7 @@ const createHttpError = require("http-errors");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const config = require("../config/config");
+const config = require("../configs/config");
 
 const register = async (req, res, next) => {
     try {
