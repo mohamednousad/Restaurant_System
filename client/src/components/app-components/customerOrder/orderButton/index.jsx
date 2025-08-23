@@ -27,7 +27,6 @@ const OrderButton = ({ tableId="123" }) => {
     //   table: { tableId } // Include tableId from QR code
     }));
     navigate("/customer/tables");
-
   };
 
   return (
