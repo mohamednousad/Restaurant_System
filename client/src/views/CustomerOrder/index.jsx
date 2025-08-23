@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { popularDishes } from "../../constants";
 import { useWebSocket } from "../../services/websocketService";
 import Notification from "../../components/app-components/notification";
+import OrderButton from "../../components/app-components/customerOrder/orderButton";
 
 const CustomerOrder = () => {
   const { messages } = useWebSocket();
@@ -53,6 +54,7 @@ const CustomerOrder = () => {
             <Notification key={idx} orderId={note.orderId} status={note.status} />
           ))}
         </div>
+        <OrderButton/>
       </div>
     </div>
   );
